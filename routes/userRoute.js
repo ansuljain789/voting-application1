@@ -81,17 +81,40 @@ router.post('/login', async(req, res) => {
 });
 
 // Profile route
+// router.get('/profile', jwtAuthMiddleware, async (req, res) => {
+//     try{
+//         const userData = req.user;
+//         const userId = userData.id;
+        
+//         const user = await User.findById(userId);
+//         console.log(user);
+        
+//         res.status(200).json({user});
+//     }catch(err){
+//         console.error(err);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// })
+
+//profile route
 router.get('/profile', jwtAuthMiddleware, async (req, res) => {
-    try{
-        const userData = req.user;
-        const userId = userData.id;
-        const user = await User.findById(userId);
-        res.status(200).json({user});
-    }catch(err){
+    try {
+        const userId = req.user.id; // Extract user ID from token
+
+        // Find user and exclude password and __v fields
+        const user = await User.findById(userId).select('-_id -password -__v');
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+      console.log(user);
+      
+        res.status(200).json(user); // Send filtered user details
+    } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-})
+});
 
 router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
     try {
