@@ -7,8 +7,8 @@ require('dotenv').config();
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json()); // req.body
 const PORT = process.env.PORT || 3000;
-// const cors = require("cors");
-// app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const cors = require("cors");
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 
 
