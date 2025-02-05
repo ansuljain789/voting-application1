@@ -127,7 +127,6 @@ router.delete('/:candidateID', jwtAuthMiddleware, async (req, res)=>{
 //     } 
 // });
 
-// vote count 
 
 router.get('/vote/count', async (req, res) => {
     try{
@@ -137,7 +136,9 @@ router.get('/vote/count', async (req, res) => {
         // Map the candidates to only return their name and voteCount
         const voteRecord = candidate.map((data)=>{
             return {
+                name:data.name,
                 party: data.party,
+                age: data.age,
                 count: data.voteCount
             }
         });
@@ -148,6 +149,7 @@ router.get('/vote/count', async (req, res) => {
         res.status(500).json({error: 'Internal Server Error'});
     }
 });
+
 // let's start voting
 router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res)=>{
     // no admin can vote
