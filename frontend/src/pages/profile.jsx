@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast,ToastContainer  } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -50,7 +53,15 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from localStorage
     localStorage.removeItem("role"); // Remove role
-    navigate("/login"); // Redirect to login page
+
+    toast.success("Logged out successfully!", {
+      position: "top-right",
+      autoClose: 2000, // Closes after 2 seconds
+    });
+    // navigate("/login"); // Redirect to login page
+    setTimeout(() => {
+      navigate("/login"); // Redirect to login after the toast disappears
+    }, 2000);
   };
 ///handle vote
   // const handleVote = async () => {
@@ -121,7 +132,6 @@ const Profile = () => {
       setError(error.response?.data?.message || "An error occurred while voting.");
     }
   };
-  
 
 
 
@@ -134,17 +144,12 @@ const Profile = () => {
         <p>Loading...</p>
       ) : (
         <div className="bg-white p-6 rounded shadow-md w-80">
-          <p><strong>Name:</strong> {profile.name}</p>
-          <p><strong>Age:</strong> {profile.age}</p>
+          <p><strong>Name: </strong> {profile.name}</p>
+          <p><strong>Age:  </strong> {profile.age}</p>
           <p><strong>Email:</strong> {profile.email}</p>
           <p><strong>Adress:</strong> {profile.address}</p>
           <p><strong>Aadhaar:</strong> {profile.aadharCardNumber}</p>
           <p><strong>Role:</strong> {profile.role}</p>
-          <p><strong>password:</strong> {profile.password}</p>
-
-          <p><strong>VOted:</strong> {profile.isVoted}</p>
-          
-          
         </div>
       )}
 
@@ -173,6 +178,7 @@ const Profile = () => {
       >
         Logout
       </button>
+      <ToastContainer />
     </div>
   );
 };

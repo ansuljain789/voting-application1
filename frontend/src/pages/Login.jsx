@@ -75,7 +75,7 @@ const Login = () => {
         "http://localhost:3000/user/login",
         { aadharCardNumber, password },
         { headers: { "Content-Type": "application/json" } }
-      );
+      ); 
 
       console.log("Login successful:", response.data);
 
@@ -143,8 +143,6 @@ const Login = () => {
   </a>
 </p>
       </form>
-
-      
     </div>
     
   );
