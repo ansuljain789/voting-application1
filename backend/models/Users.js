@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 
 //define the user schema
 const userSchema = new mongoose.Schema({
+    
     name: {
         type: String,
         required: true
@@ -38,7 +39,7 @@ const userSchema = new mongoose.Schema({
     },
     isVoted: {
         type: Boolean,
-    }
+    },
 });
 
 

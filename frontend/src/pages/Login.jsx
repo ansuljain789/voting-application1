@@ -57,6 +57,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 const Login = () => {
   const [aadharCardNumber, setAadharCardNumber] = useState("");
@@ -138,10 +139,16 @@ const Login = () => {
         </button>
 
         <p className="text-center text-sm mt-4">
-  <a href="/ForgotPassword" className="text-blue-500 hover:underline">
-    Forgot Password?
-  </a>
-</p>
+        <Link to="/resetPassword" className="text-blue-500 hover:underline">
+        Forgot Password?
+         </Link>          
+         </p>
+         <p className="mt-4 text-sm">
+              Dont have an account?{" "}
+         <Link to="/signup" className="text-blue-500 hover:underline">
+              Sign Up
+         </Link>
+         </p>
       </form>
     </div>
     

@@ -126,6 +126,9 @@ const Profile = () => {
   
       alert("Vote recorded successfully!");
       console.log("voted succwssfully");
+      console.log(response);
+      
+
       
     } catch (error) {
       console.error("Error voting:", error.response?.data || error.message);

@@ -1,9 +1,12 @@
 
 const express = require('express');
 const router = express.Router();
-const User = require('./../models/Users');
-const {jwtAuthMiddleware, generateToken} = require('./../jwt');
+const User = require('../models/Users');
+const {jwtAuthMiddleware, generateToken} = require('../jwt');
 const Candidate = require('../models/candidate')
+const crypto = require("crypto");
+const twilio = require('twilio');
+const OTP_EXPIRATION_TIME = 5 * 60 * 1000
 
 // POST route to add a person
 router.post('/signup', async (req, res) =>{
@@ -198,5 +201,7 @@ router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res)=>{
         return res.status(500).json({error: 'Internal Server Error'});
     } 
 });
+
+
 
 module.exports = router;

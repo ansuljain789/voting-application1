@@ -117,6 +117,8 @@ import { Routes, Route ,Navigate} from "react-router-dom";
 import Login from "./pages/Login";
 import Profile from "./pages/profile";
 import Admin from "./pages/admin";
+import Signup from "./pages/signup";
+import ResetPasswordFlow from "./pages/resetPassword";
 
 const App = () => {
   return (
@@ -125,6 +127,9 @@ const App = () => {
 <Route path="/" element={<Navigate to="/login" />} />
 
       <Route path="/login" element={<Login />} />
+      <Route path="/resetPassword" element={<ResetPasswordFlow />} />
+
+      <Route path="/signup" element={<Signup />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/admin" element={<Admin/>} />
     </Routes>
