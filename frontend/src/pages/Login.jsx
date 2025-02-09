@@ -94,6 +94,8 @@ const Login = () => {
       }
     } catch (error) {
         console.error("Login failed:", error.response?.data || error.message);
+        console.log("there is an error");
+        
 
         // Check if it's a network error
         if (error.response) {

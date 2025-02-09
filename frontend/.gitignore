@@ -1,6 +1,6 @@
 node_modules/
 env/
-frontend/src/pages/api.js/
-frontend/src/pages/resetPassword.jsx/
-frontend/src/login.jsx/
-frontend/src/privateRoute.jsx/
+src/pages/api.js/
+src/pages/resetPassword.jsx/
+src/login.jsx/
+src/privateRoute.jsx/
